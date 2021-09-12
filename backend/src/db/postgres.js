@@ -18,6 +18,7 @@ client.query(
   PRIMARY KEY (id)
 );`,
   (err, res) => {
+    console.log(`Successfully create todo_list table`);
     if (err) {
       console.log(`ERROR Creating todo_list: ${err}`);
       client.end();
@@ -34,6 +35,7 @@ client.query(
     PRIMARY KEY (id)
   );`,
   (err, res) => {
+    console.log(`Successfully create todo_list_item table`);
     if (err) {
       console.log(`ERROR Creating todo_list_item: ${err}`);
       client.end();
