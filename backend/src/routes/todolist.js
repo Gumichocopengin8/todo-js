@@ -94,8 +94,9 @@ router.post("/:todoListId/items", (req, res) => {
 router.put("/:todoListId/items/:itemId", (req, res) => {
   logger.debug("Update a Todo list item");
   const query = {
-    text: `UPDATE todo_list_item SET is_completed = $1 WHERE id = $2;`,
-    values: [req.body.isCompleted, req.params.itemId],
+    text:
+      `UPDATE todo_list_item SET is_completed = $1 WHERE id = $2 AND list_id = $3;`,
+    values: [req.body.isCompleted, req.params.itemId, req.params.todoListId],
   };
   client.query(query, (err, response) => {
     if (err) {
@@ -111,8 +112,8 @@ router.put("/:todoListId/items/:itemId", (req, res) => {
 router.delete("/:todoListId/items/:itemId", (req, res) => {
   logger.debug("Delete a Todo list item");
   const query = {
-    text: `DELETE FROM todo_list_item WHERE id = $1;`,
-    values: [req.params.itemId],
+    text: `DELETE FROM todo_list_item WHERE id = $1 AND list_id = $2;`,
+    values: [req.params.itemId, req.params.todoListId],
   };
   client.query(query, (err, response) => {
     if (err) {
