@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react';
+import './css/App.css';
+import LayoutMain from './components/layout';
 
-import "./App.css";
-
-function App() {
-  return (<p>
-    Hello from Determined AI
-    </p>);
-}
+const App = () => {
+  return <LayoutMain />;
+};
 
 export default App;

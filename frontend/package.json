@@ -1,6 +1,6 @@
 {
-  "name": "table-filter-challenge",
-  "version": "1.0.0",
+  "name": "todo-js-frontend",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -11,21 +11,21 @@
     "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'"
   },
   "dependencies": {
-    "antd": "^4.13.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^1.1.5",
-    "typescript": "^4.4.3",
-    "web-vitals": "^2.1.0"
-  },
-  "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^27.0.01",
-    "@types/node": "^16.9.1",
-    "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.9",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "antd": "^4.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.17.0",
     "@typescript-eslint/parser": "4.17.0",
     "babel-eslint": "10.1.0",
