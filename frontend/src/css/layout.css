@@ -4,9 +4,37 @@
   font-size: 1.75rem;
 }
 
+.menu {
+  height: 85vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.menu::-webkit-scrollbar {
+  display: none;
+}
+
 .contents {
   width: max-content;
+  height: 96vh;
+  padding: 1rem 0.5rem;
   display: flex;
   justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.create-list {
+  width: 100%;
+  margin-bottom: 1rem;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  color: skyblue;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }

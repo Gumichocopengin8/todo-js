@@ -36,15 +36,6 @@
         "ignoreRestArgs": true
       }
     ],
-    "max-len": [
-      "warn",
-      {
-        "code": 80,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true,
-        "ignoreComments": true
-      }
-    ],
     "no-plusplus": [
       "warn",
       {
@@ -55,13 +46,7 @@
     "import/no-extraneous-dependencies": [
       "warn",
       {
-        "devDependencies": [
-          "**/*.test.js",
-          "**/*.test.jsx",
-          "**/*.test.ts",
-          "**/*.test.tsx",
-          "src/tests/**/*"
-        ]
+        "devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.test.ts", "**/*.test.tsx", "src/tests/**/*"]
       }
     ],
     "react/jsx-props-no-spreading": "off",
@@ -71,13 +56,6 @@
     "react/no-unescaped-entities": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-wrap-multilines": "off",
-    "react/destructuring-assignment": "off",
-    "@typescript-eslint/comma-dangle": ["warn", {
-      "arrays": "only-multiline",
-      "objects": "only-multiline",
-      "imports": "only-multiline",
-      "exports": "only-multiline",
-      "functions": "never"
-    }]
+    "react/destructuring-assignment": "off"
   }
 }
