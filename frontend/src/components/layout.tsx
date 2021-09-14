@@ -91,35 +91,45 @@ const LayoutMain = () => {
         </Sider>
         <Layout className="contents">
           <Content style={{ width: '88%' }}>
-            <div>
-              <Button icon={<PlusCircleTwoTone />} shape="round" onClick={showCreateItemModal}>
-                Create Item
-              </Button>
-            </div>
-            <Tabs defaultActiveKey="1" centered>
-              <TabPane tab="Todo" key="1">
-                {listItems.length === 0 ? (
-                  <Empty />
-                ) : (
-                  listItems
-                    .filter((item) => !item.is_completed)
-                    .map((item) => (
-                      <TodoCard key={item.id} item={item} todolistId={menu} onRefreshItems={onRefreshItems} />
-                    ))
-                )}
-              </TabPane>
-              <TabPane tab="Done" key="2">
-                {listItems.length === 0 ? (
-                  <Empty />
-                ) : (
-                  listItems
-                    .filter((item) => item.is_completed)
-                    .map((item) => (
-                      <TodoCard key={item.id} item={item} todolistId={menu} onRefreshItems={onRefreshItems} />
-                    ))
-                )}
-              </TabPane>
-            </Tabs>
+            {lists.length === 0 || !lists.map((list) => list.id).includes(Number(menu)) ? (
+              <Empty description={<p>Creata a new list or Select a list if it exists</p>}>
+                <Button type="primary" shape="round" onClick={showCreateListModal}>
+                  Create List Now
+                </Button>
+              </Empty>
+            ) : (
+              <>
+                <div>
+                  <Button icon={<PlusCircleTwoTone />} shape="round" onClick={showCreateItemModal}>
+                    Create Item
+                  </Button>
+                </div>
+                <Tabs defaultActiveKey="1" centered>
+                  <TabPane tab="Todo" key="1">
+                    {listItems.length === 0 ? (
+                      <Empty />
+                    ) : (
+                      listItems
+                        .filter((item) => !item.is_completed)
+                        .map((item) => (
+                          <TodoCard key={item.id} item={item} todolistId={menu} onRefreshItems={onRefreshItems} />
+                        ))
+                    )}
+                  </TabPane>
+                  <TabPane tab="Done" key="2">
+                    {listItems.length === 0 ? (
+                      <Empty />
+                    ) : (
+                      listItems
+                        .filter((item) => item.is_completed)
+                        .map((item) => (
+                          <TodoCard key={item.id} item={item} todolistId={menu} onRefreshItems={onRefreshItems} />
+                        ))
+                    )}
+                  </TabPane>
+                </Tabs>
+              </>
+            )}
           </Content>
         </Layout>
       </Layout>
