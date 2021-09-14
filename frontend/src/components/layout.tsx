@@ -11,7 +11,7 @@ const LayoutMain = () => {
   const { TabPane } = Tabs;
   const [lists, setLists] = useState([]);
   const [listItems, setListItems] = useState([]);
-  const [menu, setMenu] = useState('1');
+  const [todolistId, setTodolistId] = useState('1');
   const [modalTitle, setModalTitle] = useState('');
   const [refreshItems, setRefreshItems] = useState(false);
   const [refreshLists, setRefreshLists] = useState(false);
@@ -35,7 +35,7 @@ const LayoutMain = () => {
   useEffect(() => {
     let unmounted = false;
     const func = async () => {
-      const todolistItems = await fetchTodoListItemsUsingGET(menu).catch((err) => {
+      const todolistItems = await fetchTodoListItemsUsingGET(todolistId).catch((err) => {
         console.error(err);
         return [];
       });
@@ -48,9 +48,9 @@ const LayoutMain = () => {
       unmounted = true;
     };
     return cleanup;
-  }, [menu, refreshItems]);
+  }, [todolistId, refreshItems]);
 
-  const onClickMenu = (e) => setMenu(e.key);
+  const onClickTodolistId = (e) => setTodolistId(e.key);
   const onRefreshItems = () => setRefreshItems((state) => !state);
   const onRefreshLists = () => setRefreshLists((state) => !state);
   const onModalInvisible = () => setVisible(false);
@@ -63,7 +63,7 @@ const LayoutMain = () => {
     setModalTitle('Create List');
   };
   const onDeleteList = async () => {
-    await deleteTodoListUsingDELETE(menu).then(() => {
+    await deleteTodoListUsingDELETE(todolistId).then(() => {
       setRefreshLists((state) => !state);
     });
   };
@@ -73,7 +73,7 @@ const LayoutMain = () => {
       <Layout style={{ height: '100vh' }}>
         <Sider>
           <div className="title">todo-js</div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onClick={onClickMenu} className="menu">
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onClick={onClickTodolistId} className="menu">
             {lists.map((list) => (
               <Menu.Item key={list.id}>
                 <div className="flex">
@@ -91,7 +91,7 @@ const LayoutMain = () => {
         </Sider>
         <Layout className="contents">
           <Content style={{ width: '88%' }}>
-            {lists.length === 0 || !lists.map((list) => list.id).includes(Number(menu)) ? (
+            {lists.length === 0 || !lists.map((list) => list.id).includes(Number(todolistId)) ? (
               <Empty description={<p>Creata a new list or Select a list if it exists</p>}>
                 <Button type="primary" shape="round" onClick={showCreateListModal}>
                   Create List Now
@@ -112,7 +112,7 @@ const LayoutMain = () => {
                       listItems
                         .filter((item) => !item.is_completed)
                         .map((item) => (
-                          <TodoCard key={item.id} item={item} todolistId={menu} onRefreshItems={onRefreshItems} />
+                          <TodoCard key={item.id} item={item} todolistId={todolistId} onRefreshItems={onRefreshItems} />
                         ))
                     )}
                   </TabPane>
@@ -123,7 +123,7 @@ const LayoutMain = () => {
                       listItems
                         .filter((item) => item.is_completed)
                         .map((item) => (
-                          <TodoCard key={item.id} item={item} todolistId={menu} onRefreshItems={onRefreshItems} />
+                          <TodoCard key={item.id} item={item} todolistId={todolistId} onRefreshItems={onRefreshItems} />
                         ))
                     )}
                   </TabPane>
@@ -140,7 +140,7 @@ const LayoutMain = () => {
           onModalInvisible={onModalInvisible}
           onRefreshItems={onRefreshItems}
           onRefreshLists={onRefreshLists}
-          todolistId={menu}
+          todolistId={todolistId}
         />
       ) : (
         <></>
